@@ -1,15 +1,14 @@
-import { useContext } from 'react';
-import { FilteredContext } from '../context/FiltersContext';
+import { useContext } from "react";
+import { FiltersContext } from "../context/FiltersContext";
 
 export function useFilters() {
-    const filteredContext = useContext(FilteredContext);
-    if (!filteredContext) throw new Error("Error in Filtered Context");
+    const filterContext = useContext(FiltersContext);
+    if (!filterContext) throw new Error("Error in Filters Context");
 
-    const { filteredBooks, filters, setFilters } = filteredContext;
-
+    const { filters, filteredBooks, setFilters } = filterContext;
     return {
-        filteredBooks: filteredBooks,
-        filters: filters,
-        setFilters: setFilters
+        filters,
+        filteredBooks,
+        setFilters
     };
 }

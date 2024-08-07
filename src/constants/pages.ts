@@ -1,0 +1,1 @@
+export const INPUT_MAX_PAGES_TOLERANCE = 10;
