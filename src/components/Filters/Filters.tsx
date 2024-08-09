@@ -6,7 +6,7 @@ import '../styles/InputRange.css';
 const Filters = () => {
     const { books } = useBooks();
     const { filters, setFilters } = useFilters();
-    const { maxPages, defaultFilters, genre } = filters;
+    const { maxPages, defaultFilters, genre, query } = filters;
     const { allGenres, bookWithMorePages } = defaultFilters;
 
     function handleMaxPages(e: React.ChangeEvent<HTMLInputElement>) {
@@ -23,10 +23,14 @@ const Filters = () => {
         setFilters(prevState => ({ ...prevState, genre: e.target.value }));
     }
 
+    function handleQuery(e: React.ChangeEvent<HTMLInputElement>) {
+        setFilters(prevState => ({ ...prevState, query: e.target.value }));
+    }
+
 
     return (
         <div className="flex justify-center items-center py-8 bg-slate-900 gap-x-32">
-            <form className="flex gap-x-12">
+            <form id='books' className="flex gap-x-12">
                 <div className="flex gap-4 items-center">
                     <label htmlFor="maxPages" className="text-white font-hind text-md w-full">Pages per book:</label>
                     <div className="PB-range-slider-div w-full">
@@ -44,9 +48,11 @@ const Filters = () => {
                         ))}
                     </select>
                 </div>
+                <div className="flex justify-center items-center">
+                    <input onChange={handleQuery} value={query} type="text" placeholder="Enter the name of the book" className="select-none outline-none bg-slate-600 py-2 px-2 w-64 text-white" />
+                </div>
             </form>
 
-            {/* //TODO: ADD BOOKS IN LIST */}
             <BooksStats allGenres={allGenres} books={books} />
         </div>
     );

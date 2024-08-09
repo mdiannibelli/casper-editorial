@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useEffect, useMemo, useState } from "react";
 import { useBooks } from "../hooks/useBooks";
 import { Book } from "../types/BookType";
 import { INPUT_MAX_PAGES_TOLERANCE } from "../constants/pages";
@@ -6,6 +6,7 @@ import { INPUT_MAX_PAGES_TOLERANCE } from "../constants/pages";
 export interface Filters {
     genre: string
     maxPages: number;
+    query: string
     defaultFilters: {
         allGenres: string[];
         bookWithMorePages: number;
@@ -24,6 +25,7 @@ export function FilteredProvider({ children }: { children: ReactNode }) {
     const { books } = useBooks();
     const [filters, setFilters] = useState<Filters>({
         genre: '',
+        query: '',
         maxPages: 0,
         defaultFilters: {
             allGenres: [],
@@ -59,11 +61,11 @@ export function FilteredProvider({ children }: { children: ReactNode }) {
         }));
     }, [books]);
 
-    const filterBooks = (books: Book[]) => {
-        return books.filter((book) => (!filters.genre || filters.genre === book.genre) && book.pages <= filters.maxPages);
-    };
+    const filteredBooks = useMemo(() => {
+        return books.filter((book) => (!filters.genre || filters.genre === book.genre) && book.pages <= filters.maxPages && book.title.toLowerCase().match(filters.query.toLowerCase()));
+    }, [books, filters]);
 
-    const filteredBooks = filterBooks(books);
+    //const filteredBooks = filterBooks();
 
     return (
         <FiltersContext.Provider value={{ filters, setFilters, filteredBooks }}>

@@ -10,7 +10,6 @@ interface Props {
 
 const BooksStats = ({ books, allGenres }: Props) => {
     const booksInList = userList(state => state.booksToRead);
-    console.log(booksInList);
     return (
         <aside className="flex justify-center items-center gap-x-8">
             <div className="flex items-center gap-x-2">

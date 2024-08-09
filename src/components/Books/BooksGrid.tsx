@@ -19,7 +19,7 @@ const BooksGrid = () => {
         removeBook(newBook);
     }
     return (
-        <section id='books' className='grid grid-cols-4 justify-center  justify-items-center gap-24 max-w-[1082px] mx-auto py-24'>
+        <section className='grid grid-cols-4 justify-center  justify-items-center gap-24 max-w-[1082px] mx-auto py-24'>
             {
                 filteredBooks.map((book, index) => (
                     <div onClick={() => addBookInList(book)} key={index} className='cursor-pointer flex flex-col min-h-[200px] min-w-[200px]'>
