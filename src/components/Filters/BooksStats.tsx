@@ -11,7 +11,7 @@ interface Props {
 const BooksStats = ({ books, allGenres }: Props) => {
     const booksInList = userList(state => state.booksToRead);
     return (
-        <aside className="flex justify-center items-center gap-x-8">
+        <aside className="flex justify-center items-center gap-x-8 mt-8 md:mt-0">
             <div className="flex items-center gap-x-2">
                 <BookIcon className="text-white" />
                 <span className="text-white font-hind font-bold text-xl">{books.length}</span>

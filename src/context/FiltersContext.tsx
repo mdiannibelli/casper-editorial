@@ -33,6 +33,8 @@ export function FilteredProvider({ children }: { children: ReactNode }) {
         }
     });
 
+    const [delayedQuery, setDelayedQuery] = useState<string>(filters.query);
+
     useEffect(() => {
         if (!books.length) return;
 
@@ -61,9 +63,18 @@ export function FilteredProvider({ children }: { children: ReactNode }) {
         }));
     }, [books]);
 
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            setDelayedQuery(filters.query);
+        }, 1000);
+        return () => {
+            clearTimeout(handler);
+        };
+    }, [filters.query]);
+
     const filteredBooks = useMemo(() => {
-        return books.filter((book) => (!filters.genre || filters.genre === book.genre) && book.pages <= filters.maxPages && book.title.toLowerCase().match(filters.query.toLowerCase()));
-    }, [books, filters]);
+        return books.filter((book) => (!filters.genre || filters.genre === book.genre) && book.pages <= filters.maxPages && book.title.toLowerCase().match(delayedQuery.toLowerCase()));
+    }, [books, filters, delayedQuery]);
 
     //const filteredBooks = filterBooks();
 

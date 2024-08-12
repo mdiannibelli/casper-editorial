@@ -13,19 +13,19 @@ const SidebarMenu = () => {
             {/* Background */}
             {
                 navbarMenu &&
-                <div className='fixed z-20 top-0 right-0 h-screen w-[20%] opacity-30 dark:bg-slate-800' />
+                <div className='fixed z-20 top-0 right-0 h-screen w-[40%] opacity-30 dark:bg-slate-800' />
             }
 
             {/* Blur Background */}
             {
                 navbarMenu &&
-                <div className='fixed z-20 top-0 right-0 h-screen w-[20%] backdrop-filter backdrop-blur-sm fade-in' />
+                <div className='fixed z-20 top-0 right-0 h-screen w-[40%] backdrop-filter backdrop-blur-sm fade-in' />
             }
 
             {/* Nav */}
             <nav className={
                 clsx(
-                    'fixed z-20 top-0 right-0 w-[20%] h-screen bg-slate-300 dark:bg-slate-900 opacity-85 shadow-2xl transform transition-all duration-500',
+                    'fixed z-20 top-0 right-0 w-[40%] h-screen bg-slate-300 dark:bg-slate-900 opacity-85 shadow-2xl transform transition-all duration-500',
                     { 'translate-x-[100%]': !navbarMenu }
                 )
             }>

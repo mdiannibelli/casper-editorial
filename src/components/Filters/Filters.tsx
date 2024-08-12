@@ -29,8 +29,8 @@ const Filters = () => {
 
 
     return (
-        <div className="flex justify-center items-center py-8 bg-slate-900 gap-x-32">
-            <form id='books' className="flex gap-x-12">
+        <div className="flex flex-col md:flex-row justify-center items-center flex-wrap px-12 py-8 bg-slate-900 gap-x-32">
+            <form id='books' className="flex flex-col md:flex-row justify-center items-center gap-y-6 gap-x-12">
                 <div className="flex gap-4 items-center">
                     <label htmlFor="maxPages" className="text-white font-hind text-md w-full">Pages per book:</label>
                     <div className="PB-range-slider-div w-full">
